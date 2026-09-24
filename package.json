@@ -1,0 +1,31 @@
+{
+  "name": "rsl-blockchain-pqc",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Consulta protegida por senha dos resultados da revisão sistemática sobre Blockchain/DLT e criptografia pós-quântica",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test",
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build-js.mjs",
+    "encrypt": "node scripts/encrypt.mjs",
+    "prepare": "git config core.hooksPath .githooks || true",
+    "docker:test": "docker compose run --rm test",
+    "docker:build": "docker compose run --rm build",
+    "docker:encrypt": "docker compose run --rm encrypt",
+    "docker:dev": "docker compose up dev",
+    "format": "prettier --write . --ignore-path .prettierignore",
+    "format:check": "prettier --check . --ignore-path .prettierignore",
+    "check": "npm run format:check && npm test",
+    "package": "node scripts/package-site.mjs",
+    "docker:package": "docker compose run --rm package"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "javascript-obfuscator": "^4.1.1",
+    "prettier": "^3.9.9"
+  }
+}

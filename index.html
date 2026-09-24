@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Revisão sistemática: Blockchain/DLT e PQC</title>
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+    <main>
+      <header>
+        <h1>Blockchain/DLT e criptografia pós-quântica</h1>
+        <p id="totals" class="muted"></p>
+      </header>
+
+      <form id="unlock">
+        <label for="password">Senha de acesso</label>
+        <div class="row">
+          <input
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+          <button type="submit" class="primary">Abrir</button>
+        </div>
+        <p id="error" class="muted" role="alert"></p>
+      </form>
+
+      <div id="app" hidden>
+        <div class="controls">
+          <div class="tabs" role="tablist">
+            <button role="tab" data-tab="approved" aria-selected="true">
+              Aprovados <span id="count-approved"></span>
+            </button>
+            <button role="tab" data-tab="rejected" aria-selected="false">
+              Reprovados <span id="count-rejected"></span>
+            </button>
+          </div>
+          <input
+            id="search"
+            type="search"
+            placeholder="Buscar"
+            aria-label="Buscar"
+          />
+          <select id="confidence" aria-label="Confiança">
+            <option value="all">Qualquer confiança</option>
+            <option value="high">Alta</option>
+            <option value="medium">Média</option>
+            <option value="low">Baixa</option>
+          </select>
+          <select id="sort" aria-label="Ordenar">
+            <option value="confidence">Ordenar por confiança</option>
+            <option value="year">Ordenar por ano</option>
+            <option value="title">Ordenar por título</option>
+          </select>
+        </div>
+
+        <p id="count" class="muted"></p>
+        <div id="list"></div>
+      </div>
+    </main>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>

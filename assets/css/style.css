@@ -1,0 +1,275 @@
+:root {
+  --bg: #fff;
+  --fg: #1a1a1a;
+  --muted: #6b6b6b;
+  --line: #e4e4e4;
+  --accent: #1a56b0;
+  --high: #2e7d32;
+  --medium: #b26a00;
+  --low: #c62828;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --fg: #e6e6e6;
+    --muted: #999;
+    --line: #2a2a2a;
+    --accent: #7aa7ee;
+    --high: #66bb6a;
+    --medium: #e0a030;
+    --low: #ef6b6b;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font:
+    16px/1.55 system-ui,
+    sans-serif;
+}
+
+main {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 3rem 1rem 4rem;
+}
+h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+.muted {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+a {
+  color: var(--accent);
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+input,
+select,
+button.primary {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+button.primary {
+  border-color: var(--fg);
+  background: var(--fg);
+  color: var(--bg);
+  cursor: pointer;
+}
+button.primary:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+/* password gate */
+#unlock {
+  max-width: 24rem;
+  margin: 2.5rem 0;
+}
+#unlock label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+}
+#unlock .row {
+  display: flex;
+  gap: 0.5rem;
+}
+#unlock input {
+  flex: 1;
+  min-width: 0;
+}
+#error {
+  min-height: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+/* filters */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+  margin: 2rem 0 1rem;
+}
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-right: auto;
+}
+.tabs button {
+  padding: 0 0 0.15rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+}
+.tabs button[aria-selected="true"] {
+  color: var(--fg);
+  border-bottom-color: var(--fg);
+}
+.tabs span {
+  font-size: 0.85rem;
+}
+.controls input[type="search"] {
+  flex: 1 1 10rem;
+}
+#count {
+  margin-bottom: 0.5rem;
+}
+
+/* list */
+details {
+  border-top: 1px solid var(--line);
+}
+details:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+summary {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr) auto auto;
+  grid-template-areas:
+    "arrow title year confidence"
+    ".     snippet snippet snippet";
+  gap: 0.1rem 0.75rem;
+  align-items: baseline;
+  padding: 0.7rem 0;
+  cursor: pointer;
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+summary::before {
+  content: "▸";
+  grid-area: arrow;
+  color: var(--muted);
+  transition: transform 0.15s;
+}
+details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.title {
+  grid-area: title;
+  overflow-wrap: anywhere;
+}
+.year,
+.confidence {
+  font-size: 0.85rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.year {
+  grid-area: year;
+}
+.confidence {
+  grid-area: confidence;
+}
+.confidence::before {
+  content: "● ";
+}
+.conf-high .confidence::before {
+  color: var(--high);
+}
+.conf-medium .confidence::before {
+  color: var(--medium);
+}
+.conf-low .confidence::before {
+  color: var(--low);
+}
+
+.snippet {
+  grid-area: snippet;
+  color: var(--muted);
+  font-size: 0.85rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+details[open] .snippet {
+  display: none;
+}
+
+.body {
+  padding: 0 0 1.25rem 1.75rem;
+  font-size: 0.92rem;
+}
+.body dl {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 0.25rem 1rem;
+  margin: 0 0 1rem;
+}
+.body dt {
+  color: var(--muted);
+}
+.body dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.body h2 {
+  margin: 0 0 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.body p {
+  margin: 0;
+  max-width: 65ch;
+  white-space: pre-line;
+}
+
+@media (max-width: 560px) {
+  summary {
+    grid-template-columns: 1rem minmax(0, 1fr) auto;
+    grid-template-areas:
+      "arrow title title"
+      ".     year  confidence"
+      ".     snippet snippet";
+  }
+  .body {
+    padding-left: 0;
+  }
+  .body dl {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .body dt {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  summary::before {
+    transition: none;
+  }
+}

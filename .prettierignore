@@ -1,0 +1,8 @@
+# generated or not formatted by hand
+assets/js/app.js
+data/
+package-lock.json
+node_modules/
+raw/
+deliverables/
+dist/

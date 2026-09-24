@@ -1,0 +1,13 @@
+#!/bin/sh
+# Blocks sensitive files and runs the tests before every commit.
+blocked=$(git diff --cached --name-only | grep -E '^(raw/|src/|deliverables/|node_modules/)|\.(docx|pdf)$' || true)
+if [ -n "$blocked" ]; then
+  echo "Commit blocked: these files must not be committed:" >&2
+  echo "$blocked" >&2
+  exit 1
+fi
+if git diff --cached --name-only | grep -q '^assets/js/app.js$' && grep -q 'Senha incorreta' assets/js/app.js; then
+  echo "Commit blocked: assets/js/app.js does not look obfuscated (run: npm run build)." >&2
+  exit 1
+fi
+exec "$(git rev-parse --show-toplevel)/scripts/run-tests.sh"
